@@ -24,3 +24,6 @@ npm install && npm run dev
 
 ## TODO
 - 引入 babel
+
+## licence
+MIT
