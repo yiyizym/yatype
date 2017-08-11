@@ -1,10 +1,24 @@
 {
   "name": "yatype",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "yet another type",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "gulp --gulpfile ./gulpfile.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-live-serve": "^1.0.0",
+    "gulp-livereload": "^3.8.1",
+    "eslint": "^3.1.0",
+    "gulp-util": "^3.0.7",
+    "webpack": "^1.12.6",
+    "growl": "^1.8.1",
+    "webpack-dev-server": "^1.12.1"
   },
   "author": "yiyizym",
   "license": "MIT"
