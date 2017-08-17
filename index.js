@@ -112,7 +112,7 @@ class YaType {
         }
     }
 
-    jumpMode(){
+    jumpBackMode(){
         if(this.currentCentenceIndex != 0){
             var arr = this.prevSentence().split('');
             arr.splice(this.getLastSameCharIndex(), 0, '<i class="yatype__cursor">|</i>');
@@ -153,7 +153,7 @@ class YaType {
             self = this,
             prevContent = this.prevSentence(),
             currContent = this.currSentence(),
-            {bPart, mPart, aPart} = this.splitSentence(prevContent, currContent),
+            {bPart, mPart, aPart} = splitSentence(prevContent, currContent),
             chars = mPart.split(''),
             curStr = '';
 
@@ -167,7 +167,7 @@ class YaType {
                 console.error('two sentence is the same');
                 return {bPart: current, mPart: '', aPart: ''};
             }
-            let index = this.getLastSameCharIndex();
+            let index = self.getLastSameCharIndex();
             let bPart = prev.slice(0, index);
             let aPart = prev.slice(index, prev.length);
             let inverseIndex = current.lastIndexOf(aPart);
@@ -188,7 +188,7 @@ class YaType {
         }
 
         function moveCursor(bPart,curStr, aPart){
-            this.currentCursorPosition = bPart.length + curStr.length;
+            self.currentCursorPosition = bPart.length + curStr.length;
             return bPart + curStr + '<i class="yatype__cursor">|</i>' + aPart;
         }
 

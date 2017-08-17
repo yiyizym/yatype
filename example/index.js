@@ -6,7 +6,7 @@ let option = {
         {content: '这是一款 ETF 基金定投工具'},
         {content: '这是一款不太专业的 ETF 基金定投工具'}
     ],
-    effect: 'back' //back|delete|jump
+    effect: 'jumpBack' //moveBack|deleteBack|jumpBack
 }
 
 new YaType('#element', option);
