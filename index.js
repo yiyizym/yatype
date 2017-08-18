@@ -157,7 +157,7 @@ class YaType {
             chars = mPart.split(''),
             curStr = '';
 
-        type();
+        self.type(index, bPart, mPart, aPart);
 
         function splitSentence(prev, current){
             if(!prev){
@@ -176,22 +176,6 @@ class YaType {
             return {bPart,mPart,aPart}
         }
 
-        function type(){
-            if(index == chars.length){
-                self.currentCentenceIndex += 1;
-                self.walk();
-                return;
-            }
-            curStr += chars[index++];
-            self.el.innerHTML = moveCursor(bPart,curStr, aPart);
-            setTimeout(type, self.opt.charTime);
-        }
-
-        function moveCursor(bPart,curStr, aPart){
-            self.currentCursorPosition = bPart.length + curStr.length;
-            return bPart + curStr + '<i class="yatype__cursor">|</i>' + aPart;
-        }
-
     }
 
     deleteTyping(){
@@ -200,19 +184,27 @@ class YaType {
             currContent = this.currSentence(),
             chars = currContent.slice(self.getLastSameCharIndex()),
             curStr = currContent.slice(0, self.getLastSameCharIndex());
-        function type(){
-            if(index == chars.length){
-                self.currentCentenceIndex += 1;
-                self.walk();
-                return;
-            }
-            curStr += chars[index++];
-            self.currentCursorPosition = curStr.length;
-            self.el.innerHTML = curStr + '<i class="yatype__cursor">|</i>';
-            setTimeout(type, self.opt.charTime);
-        }
 
-        type();
+        self.type(index, curStr, chars, '');
+    }
+
+    type(index, bPart, mPart, aPart){
+        let self = this;
+        if(index == mPart.length){
+            this.currentCentenceIndex += 1;
+            this.walk();
+            return;
+        }
+        this.el.innerHTML = this.moveCursor(bPart,mPart.substring(0, index++), aPart);
+        setTimeout(function(){
+            self.type(index, bPart,mPart, aPart);
+        }, this.opt.charTime);
+    }
+
+
+    moveCursor(bPart,curStr, aPart){
+        this.currentCursorPosition = bPart.length + curStr.length;
+        return bPart + curStr + '<i class="yatype__cursor">|</i>' + aPart;
     }
 
 
