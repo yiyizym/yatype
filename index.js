@@ -61,8 +61,8 @@ class YaType {
                 return;
             }
         }
-
-        self[self.opt.effect + 'Mode']();
+        setTimeout(self[self.opt.effect + 'Mode'].bind(self), self.opt.sentencePauseTime);
+        // self[self.opt.effect + 'Mode']();
     }
 
     moveBackMode(){
@@ -190,7 +190,7 @@ class YaType {
 
     type(index, bPart, mPart, aPart){
         let self = this;
-        if(index == mPart.length){
+        if(index > mPart.length){
             this.currentCentenceIndex += 1;
             this.walk();
             return;
