@@ -4,5 +4,5 @@ module.exports = {
     filename: 'bundle.js',
     path: './example'
   },
-  devtool: '#inline-source-map'
+  devtool: '#module-source-map'
 }
