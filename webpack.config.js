@@ -2,12 +2,11 @@ let path = require('path');
 
 module.exports = {
   entry: {
-    index: './src/index.js',
-    // example: './src/example/index.js'
+    index: './src/example/index.js',
   },
   output: {
-    filename: 'index.js',
-    path: path.resolve(__dirname, "./output/dev")
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, "./output/example")
   },
   module: {
     rules: [

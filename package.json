@@ -1,10 +1,11 @@
 {
   "name": "yatype",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "yet another type",
-  "main": "index.js",
+  "main": "./output/index.js",
   "scripts": {
-    "dev": "gulp --gulpfile ./gulpfile.js"
+    "start": "gulp --gulpfile ./gulpfile.js",
+    "build": "gulp build --gulpfile ./gulpfile.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,6 @@
     "growl": "^1.8.1",
     "gulp": "^3.9.0",
     "gulp-babel": "^7.0.0",
-    "gulp-browserify": "^0.5.1",
     "gulp-live-serve": "^1.0.0",
     "gulp-livereload": "^3.8.1",
     "gulp-util": "^3.0.7",

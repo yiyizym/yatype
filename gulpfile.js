@@ -9,17 +9,16 @@ var gulp = require("gulp");
 var path = require("path");
 var del = require("del");
 var babel = require('gulp-babel');
-var browserify = require('gulp-browserify');
 var config = require("./webpack.config");
 
-const input = path.resolve(__dirname, 'src');
+const inputDir = path.resolve(__dirname, 'src');
 
-const output = path.resolve(__dirname, 'output');
+const outputDir = path.resolve(__dirname, 'output');
 
 var paths = {
-    scripts: `${input}/**/*.js`,
-    htmls: `${input}/**/*.html`,
-    outputs: `${output}/**/*`
+    scripts: `${inputDir}/**/*.js`,
+    htmls: `${inputDir}/**/*.html`,
+    outputs: `${outputDir}/**/*`
 };
 
 gulp.task('clean', function(){
@@ -27,6 +26,8 @@ gulp.task('clean', function(){
 });
 
 gulp.task("default", ['build-dev']);
+
+gulp.task("build", ["babel"]);
 
 gulp.task("build-dev", ['serve', 'livereload', 'babel', 'example', 'watch']);
 
@@ -44,27 +45,34 @@ gulp.task('livereload', function(){
 });
 
 gulp.task('babel', ['clean'], function(){
-    return gulp.src(paths.scripts)
+    return gulp.src(`${inputDir}/index.js`)
                 .pipe(babel({
                     presets: ['env']
                 }))
-                .pipe(gulp.dest(output));
+                .pipe(gulp.dest(outputDir));
 });
 
-gulp.task('example', ['babel', 'copy-html', 'browsify-script']);
+gulp.task('example', ['clean', 'copy-html', 'webpack']);
 
-gulp.task('watch', ['example'], function(){
-    gulp.watch([paths.scripts, paths.htmls], ['example']);
+gulp.task('watch', ['babel', 'example'], function(){
+    gulp.watch([paths.scripts, paths.htmls], ['babel','example']);
 });
 
 gulp.task('copy-html', ['clean'], function(){
-    return gulp.src(paths.htmls).pipe(gulp.dest(output));
+    return gulp.src(paths.htmls).pipe(gulp.dest(outputDir));
 });
 
-gulp.task('browsify-script', ['babel'], function(){
-    return gulp.src(`${output}/example/index.js`)
-                .pipe(browserify({
-                    insertGlobals : true
-                }))
-                .pipe(gulp.dest(`${output}/example/build`));
+gulp.task('webpack', ['clean'], function(callback){
+    var devCompiler = webpack(config);
+    // webpack nodejs api, see https://webpack.github.io/docs/node.js-api.html
+    devCompiler.run(function(err, stats){
+        if(err) {
+            throw new gutil.PluginError('example', err);
+        }
+        gutil.log('[example]', stats.toString({
+            chunks: false,
+            colors: true
+        }));
+        callback && callback();
+    })
 });

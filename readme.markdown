@@ -15,15 +15,17 @@ let option = {
 
 new YaType('#element', option);
 ```
+## build
+```javascript
+//在终端运行：
+npm install && npm run build
+```
 ## 运行 example
 ```javascript
 //在终端运行：
-npm install && npm run dev
-//然后打开浏览器访问： localhost:3000/example
+npm install && npm run start
+//然后打开浏览器访问： localhost:3000/output/example
 ```
-
-## TODO
-- 引入 babel
 
 ## licence
 MIT
