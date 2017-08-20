@@ -11,14 +11,20 @@
     "url": "https://github.com/yiyizym/yatype"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "del": "^3.0.0",
+    "eslint": "^3.1.0",
+    "growl": "^1.8.1",
     "gulp": "^3.9.0",
+    "gulp-babel": "^7.0.0",
+    "gulp-browserify": "^0.5.1",
     "gulp-live-serve": "^1.0.0",
     "gulp-livereload": "^3.8.1",
-    "eslint": "^3.1.0",
     "gulp-util": "^3.0.7",
-    "webpack": "^1.12.6",
-    "growl": "^1.8.1",
-    "webpack-dev-server": "^1.12.1"
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1"
   },
   "author": "yiyizym",
   "license": "MIT"

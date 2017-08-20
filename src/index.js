@@ -62,7 +62,6 @@ class YaType {
             }
         }
         setTimeout(self[self.opt.effect + 'Mode'].bind(self), self.opt.sentencePauseTime);
-        // self[self.opt.effect + 'Mode']();
     }
 
     moveBackMode(){
@@ -207,7 +206,5 @@ class YaType {
         return bPart + curStr + '<i class="yatype__cursor">|</i>' + aPart;
     }
 
-
-    
 };
 module.exports = YaType
